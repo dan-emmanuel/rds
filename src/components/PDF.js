@@ -30,11 +30,11 @@ const PDF = (props) => {
     } = props;
     let toPdf = () => {
         var scale = 'scale(1)';
-        document.body.style.webkitTransform =  scale;    // Chrome, Opera, Safari
-        document.body.style.msTransform =   scale;       // IE 9
+        document.body.style.webkitTransform = scale;    // Chrome, Opera, Safari
+        document.body.style.msTransform = scale;       // IE 9
         document.body.style.transform = scale;     // General
-    
-        const quality = 2; // Higher the better but larger file
+
+        const quality = 1.1; // Higher the better but larger file
         document.getElementById("img").style.display = "none"
 
         html2canvas(document.querySelector("#mainPdfBody"), {
@@ -45,10 +45,10 @@ const PDF = (props) => {
 
             const pdf = new jsPDF("p", "mm", [210, 297]);
             pdf.addImage(canvas.toDataURL("image/png"), "JPG", 0, 0, 210, 297);
-            pdf.addImage(image, 'JPG', 140, 235, 50, 50, "NONE", "NONE");
+            pdf.addImage(image, 'JPG', 140, 235, 50, 50, "NONE", "FAST");
 
             let dateDateFormat = new Date(date);
-            let monthArr = [`JAN`,`FEV`,`MAR`,`AVR`,`MAI`,`JUIN`,`JUIL`,`AOU`,`SEP`,`OCT`,`NOV`,`DEC`]
+            let monthArr = [`JAN`, `FEV`, `MAR`, `AVR`, `MAI`, `JUIN`, `JUIL`, `AOU`, `SEP`, `OCT`, `NOV`, `DEC`]
             let dateString = `${dateDateFormat.getDate()}-${monthArr[dateDateFormat.getMonth()]}-${dateDateFormat.getFullYear()}`;
             pdf.save(`${clientName}_${finalclientName}_${dateString}.pdf`);
 
@@ -179,7 +179,7 @@ const PDF = (props) => {
                         </div>
                         <div className="row justify-content-between mb-1">
                             <div className="col-12">
-                                <div className="form-floating" style={{ height: commentHeight-170 }}>
+                                <div className="form-floating" style={{ height: commentHeight - 170 }}>
 
                                     <div className="form form-control h-100" style={{ backgroundColor: "#e9ecef" }}>
                                         {divide(comment, 10)}
@@ -190,7 +190,7 @@ const PDF = (props) => {
                         </div>
                         <div className="row justify-content-between mb-1">
                             <div className="col-12">
-                                <div className="form-floating" style={{ height: fournituresHeight-100 }}>
+                                <div className="form-floating" style={{ height: fournituresHeight - 100 }}>
                                     <div className="form form-control h-100" style={{ backgroundColor: "#e9ecef" }}>
                                         {divide(fournitures, 6)}
                                     </div>

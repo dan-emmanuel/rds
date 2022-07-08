@@ -3,10 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Webcam from "react-webcam";
 import "../pdf.css";
 
-
-let commarray = Array(10).fill(undefined)
-let furnitureArray = Array(6).fill(undefined)
-
+let commarray = Array(10).fill(undefined);
+let furnitureArray = Array(6).fill(undefined);
 
 const FormInter = (props) => {
   const videoConstraints = {
@@ -38,7 +36,9 @@ const FormInter = (props) => {
 
   const capture = React.useCallback(() => {
     setCommentHeight(document.getElementById("comContainer").offsetHeight);
-    setFournitureHeight(document.getElementById("furnitureontainer").offsetHeight);
+    setFournitureHeight(
+      document.getElementById("furnitureontainer").offsetHeight
+    );
     const imageSrc = webcamRef.current.getScreenshot({
       screenshotQuality: 1,
       screenshotFormat: "image/jpeg",
@@ -46,14 +46,14 @@ const FormInter = (props) => {
     setImage(imageSrc);
   });
   // !je suis laaaaaaaaaaaaaaaaaa
-  let updteComm = (e)=>{
-    commarray[e.target.dataset.row] = e.target.value
-    setComment(commarray.join("\n"))
-  }
-  let updateFuniture = (e)=>{
-    furnitureArray[e.target.dataset.row] = e.target.value
-    setFourniture(furnitureArray.join("\n"))
-  }
+  let updteComm = (e) => {
+    commarray[e.target.dataset.row] = e.target.value;
+    setComment(commarray.join("\n"));
+  };
+  let updateFuniture = (e) => {
+    furnitureArray[e.target.dataset.row] = e.target.value;
+    setFourniture(furnitureArray.join("\n"));
+  };
   const webcamRef = React.useRef(null);
 
   return (
@@ -68,14 +68,17 @@ const FormInter = (props) => {
                 src={`${process.env.PUBLIC_URL}/rdsLogo.jpg`}
               />
             </div>
-            <div className="col-8 text-center">Rapide Dépannage Service</div>
-            <div className="col-2"></div>
+            <div
+              className="ms-auto col-9 text-center"
+              style={{ fontWeight: 900, fontSize: "1.15rem" }}
+            >
+              Rapide Dépannage Service
+            </div>
           </div>
           <div className="row align-items-center justify-content-between ">
-            <div className="col-3"></div>
-            <div className="col-6 h5 text-center">RAPPORT D'INTERVENTION</div>
-            <div className="col-3 row justify-content-end">
-              <div className="form-check form-switch">
+            <div className="col-auto  text-center">RAPPORT D'INTERVENTION</div>
+            {/* <div className="col-3"> */}
+            {/* <div className="form-check form-switch">
                 <input
                   className="form-check-input"
                   type="checkbox"
@@ -83,8 +86,20 @@ const FormInter = (props) => {
                   onChange={setPostEmergency}
                 />
                 <label className="form-check-label ps-3 text">URGENCE</label>
-              </div>
+              </div> */}
+
+            <div class="form-check form-switch col-auto">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckDefault"
+              />
+              <label class="form-check-label" for="flexSwitchCheckDefault">
+                URGENCE
+              </label>
             </div>
+            {/* </div> */}
           </div>
           <div className="row justify-content-between mb-1">
             <div className="col-6">
@@ -101,6 +116,8 @@ const FormInter = (props) => {
                   <option value="EGEO MAINTENANCE">EGEO MAINTENANCE</option>
                   <option value="MAINTENET">MAINTENET</option>
                   <option value="ABN STANDING">ABN STANDING</option>
+                  <option value="EUROP FACILITIES">EUROP FACILITIES</option>
+
                   <option value="ARTISANS DES RESEAUX">
                     ARTISANS DES RESEAUX
                   </option>
@@ -264,9 +281,12 @@ const FormInter = (props) => {
               />
             </div>
           </div>
-          <div className="row justify-content-between mb-1" id="furnitureontainer">
+          <div
+            className="row justify-content-between mb-1"
+            id="furnitureontainer"
+          >
             <div className="col-12">
-            <label>fournitures</label>
+              <label>fournitures</label>
 
               <input
                 className="form-control"
@@ -276,7 +296,7 @@ const FormInter = (props) => {
                 name=""
                 id=""
               />
-               <input
+              <input
                 className="form-control"
                 onChange={updateFuniture}
                 data-row={1}
@@ -284,7 +304,7 @@ const FormInter = (props) => {
                 name=""
                 id=""
               />
-               <input
+              <input
                 className="form-control"
                 onChange={updateFuniture}
                 data-row={2}
@@ -292,7 +312,7 @@ const FormInter = (props) => {
                 name=""
                 id=""
               />
-               <input
+              <input
                 className="form-control"
                 onChange={updateFuniture}
                 data-row={3}
@@ -300,7 +320,7 @@ const FormInter = (props) => {
                 name=""
                 id=""
               />
-               <input
+              <input
                 className="form-control"
                 onChange={updateFuniture}
                 data-row={4}
@@ -308,7 +328,7 @@ const FormInter = (props) => {
                 name=""
                 id=""
               />
-               <input
+              <input
                 className="form-control"
                 onChange={updateFuniture}
                 data-row={5}
@@ -325,6 +345,9 @@ const FormInter = (props) => {
                   type="text"
                   onChange={(e) => setResponsable(e.target.value)}
                   className="form-control mb-1"
+                  spellcheck="false"
+                  autocorrect="off"
+                  autocapitalize="off"
                 />
                 <label>Signataire</label>
               </div>
